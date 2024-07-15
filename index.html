@@ -42,10 +42,14 @@
     </div>
     
     <!-- Inizio della sezione del chatbot -->
-    <div id="chatbot">
-        <ul id="chatbot-messages"></ul>
-        <input type="text" id="chatbot-input" placeholder="Fai una domanda..." />
-        <button onclick="sendMessage()">Invia</button>
+    <div id="chatbot-container">
+        <div id="chatbot">
+            <div id="chatbot-messages"></div>
+            <div id="chatbot-input-container">
+                <input type="text" id="chatbot-input" placeholder="Fai una domanda..." />
+                <button onclick="sendMessage()">Invia</button>
+            </div>
+        </div>
     </div>
     <!-- Fine della sezione del chatbot -->
 
@@ -61,8 +65,9 @@
             input.value = '';
 
             const messageList = document.getElementById('chatbot-messages');
-            const userMessage = document.createElement('li');
-            userMessage.textContent = 'Tu: ' + message;
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user-message');
+            userMessage.textContent = message;
             messageList.appendChild(userMessage);
 
             const response = await fetch('/chatbot', {
@@ -73,9 +78,12 @@
                 body: JSON.stringify({ question: message }),
             });
             const data = await response.json();
-            const botMessage = document.createElement('li');
-            botMessage.textContent = 'Bot: ' + data.response;
+            const botMessage = document.createElement('div');
+            botMessage.classList.add('message', 'bot-message');
+            botMessage.textContent = data.response;
             messageList.appendChild(botMessage);
+
+            messageList.scrollTop = messageList.scrollHeight;
         }
     </script>
 </body>
