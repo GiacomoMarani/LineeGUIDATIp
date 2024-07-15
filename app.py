@@ -1,15 +1,16 @@
 import fitz  # PyMuPDF
 import json
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import os
 from transformers import pipeline
 
 app = Flask(__name__)
 
-# Percorso della directory contenente i PDF
+# Directory containing the PDFs and static files
 pdf_dir = 'C:/Users/UTENTE/LineeGUIDATIp/pdf'
+static_dir = 'C:/Users/UTENTE/LineeGUIDATIp'
 
-# Funzione per estrarre testo dai PDF
+# Function to extract text from PDFs
 def extract_text_from_pdf(pdf_path):
     text = ""
     with fitz.open(pdf_path) as doc:
@@ -17,26 +18,26 @@ def extract_text_from_pdf(pdf_path):
             text += page.get_text()
     return text
 
-# Estrazione e salvataggio dei testi
+# Function to extract and save text to JSON
 def save_text_to_json(pdf_path, json_path):
     text = extract_text_from_pdf(pdf_path)
     data = {"content": text}
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
-# Percorsi dei file PDF e JSON
+# PDF and JSON file paths
 pdf_files = [
     ("REV.2024.01.02 Linee guida.pdf", "linee_guida.json"),
     ("2024.01.02 PROCEDURE ATIPROJECT.pdf", "procedure.json"),
     ("2024.01.02 VALIDAZIONE ZUCCHETTI E CALENDARIO ASSENZE.pdf", "validazione.json")
 ]
 
-# Estrazione dei testi
+# Extract texts from PDFs
 for pdf, json_file in pdf_files:
     pdf_path = os.path.join(pdf_dir, pdf)
     save_text_to_json(pdf_path, json_file)
 
-# Carica i dati estratti dai PDF
+# Load extracted data from JSON files
 def load_data():
     with open('linee_guida.json', 'r', encoding='utf-8') as f:
         linee_guida_data = json.load(f)['content']
@@ -48,10 +49,10 @@ def load_data():
 
 linee_guida_data, procedure_data, validazione_data = load_data()
 
-# Configura il modello di Hugging Face
+# Configure Hugging Face model
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
-# Funzione per trovare la risposta
+# Function to find the answer
 def find_answer(data, question):
     result = qa_pipeline(question=question, context=data)
     return result['answer']
@@ -60,11 +61,19 @@ def find_answer(data, question):
 def chatbot():
     question = request.json.get('question')
     response = find_answer(linee_guida_data, question)
-    if not response or response.lower() == "non ho trovato una risposta alla tua domanda.":
+    if not response:
         response = find_answer(procedure_data, question)
-    if not response or response.lower() == "non ho trovato una risposta alla tua domanda.":
+    if not response:
         response = find_answer(validazione_data, question)
     return jsonify({'response': response})
+
+@app.route('/')
+def serve_index():
+    return send_from_directory(static_dir, 'index.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory(static_dir, path)
 
 if __name__ == '__main__':
     app.run(debug=True)
