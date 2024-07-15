@@ -3,143 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linee Guida Aziendali - ATI Project</title>
+    <title>ATI Project - Azienda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'IBM Plex Mono', monospace;
-            background-color: #000;
-            color: #fff;
+            color: white;
+            background-color: black;
             margin: 0;
             padding: 0;
         }
-        header, footer {
-            text-align: center;
-            padding: 1em;
-            background-color: #111;
-        }
-        nav {
-            text-align: center;
-            margin: 2em 0;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 1em;
-            padding: 0.5em 1em;
-            border: 1px solid #fff;
-            border-radius: 5px;
-        }
-        nav a:hover {
-            background-color: #fff;
-            color: #000;
-        }
-        .content {
-            max-width: 800px;
+        .container {
+            width: 80%;
             margin: 0 auto;
-            padding: 2em;
-            text-align: center;
         }
-        .content img {
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        header img {
             max-width: 100%;
             height: auto;
         }
-        .button {
-            display: inline-block;
-            margin: 1em 0;
-            padding: 1em 2em;
-            color: #000;
-            background-color: #fff;
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        nav a {
+            color: white;
             text-decoration: none;
-            border-radius: 5px;
+            margin: 0 15px;
+            font-weight: bold;
         }
-        .button:hover {
-            background-color: #ddd;
+        section {
+            margin: 40px 0;
         }
-        .section {
-            text-align: left;
-            margin: 2em 0;
-        }
-        .section h2 {
-            border-bottom: 1px solid #fff;
-            padding-bottom: 0.5em;
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<header>
-    <h1>Linee Guida Aziendali - ATI Project</h1>
-</header>
-
-<nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#procedure">Procedure</a>
-    <a href="#linee-guida">Linee Guida</a>
-    <a href="#contatti">Contatti</a>
-</nav>
-
-<div id="home" class="content">
-    <h2>Benvenuti nelle Linee Guida Aziendali</h2>
-    <p>Le nostre linee guida aziendali sono progettate per aiutare i nostri collaboratori e dipendenti a comprendere meglio le nostre pratiche e i nostri processi.</p>
-    <a class="button" href="#procedure">Scopri le Procedure</a>
-    <a class="button" href="#linee-guida">Scopri le Linee Guida</a>
-    <img src="https://via.placeholder.com/800x400" alt="BIM and Data Management">
-</div>
-
-<div id="about" class="content section">
-    <h2>About</h2>
-    <p>ATI Project è leader nel campo del BIM e del Data Management. La nostra missione è fornire soluzioni innovative e sostenibili per i nostri clienti.</p>
-</div>
-
-<div id="procedure" class="content section">
-    <h2>Procedure</h2>
-    <!-- Contenuto delle procedure -->
-    <h3>Trasferte</h3>
-    <p>Con pernottamento: l’alloggio è completamente gestito da ATIProject...</p>
-    <p>Senza pernottamento: sono da considerarsi le trasferte a/r in giornata...</p>
-
-    <h3>Rimborsi</h3>
-    <p>Si rimborsano colazione, pranzo e cena per una spesa indicativa di...</p>
-    <p>Trasporti interni trasferte brevi e lunghe: Per gli spostamenti interni verranno rimborsati i trasporti...</p>
-
-    <h3>Dotazioni</h3>
-    <p>Le dotazioni tecnologiche quali notebook, cellulari, SIM e accessori sono da considerarsi ad uso esclusivamente lavorativo...</p>
-</div>
-
-<div id="linee-guida" class="content section">
-    <h2>Linee Guida</h2>
-    <!-- Contenuto delle linee guida -->
-    <h3>Introduzione</h3>
-    <p>Benvenuto/a in ATI Project! Con questa presentazione lo Studio vuole fornirti informazioni utili per meglio comprendere lo spirito...</p>
-
-    <h3>Valori</h3>
-    <p>Creativi: Passione e creatività sono la base di ogni nuovo progetto...</p>
-    <p>Multiculturali: Dialogo e il rispetto sono il punto di partenza...</p>
-
-    <h3>Lo Studio</h3>
-    <p>Lo studio - I servizi: ARCHITECTURE, STRUCTURE, MEP, BIM...</p>
-    <p>Lo studio - Sedi & certificazioni: Professionisti in squadra, sedi internazionali...</p>
-
-    <h3>Utilities</h3>
-    <p>Utilities - Principali contatti: Pisa, Milano...</p>
-
-    <h3>Servizi</h3>
-    <p>Software disponibili, iscrizioni e abbonamenti: Autocad LT, Office 365 Business...</p>
-</div>
-
-<div id="contatti" class="content section">
-    <h2>Contatti</h2>
-    <p>Per qualsiasi domanda o informazione, non esitare a contattarci:</p>
-    <p>Email: info@atiproject.com</p>
-    <p>Telefono: +39 050 098 7260</p>
-    <a class="button" href="#home">Torna alla Home</a>
-</div>
-
-<footer>
-    <p>&copy; 2024 ATI Project. Tutti i diritti riservati.</p>
-</footer>
-
+    <header>
+        <img src="/mnt/data/ATI - Bianco.png" alt="Logo ATI">
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#linee-guida">Linee Guida</a>
+        <a href="#procedure">Procedure</a>
+        <a href="#chi-siamo">Chi Siamo</a>
+        <a href="#contatti">Contatti</a>
+    </nav>
+    <div class="container">
+        <section id="home">
+            <h1>Benvenuti in ATI Project</h1>
+            <p>ATI Project è un'azienda leader nel settore, impegnata nella creazione di una realtà migliore attraverso linee guida e procedure innovative.</p>
+        </section>
+        <section id="linee-guida">
+            <h2>Linee Guida</h2>
+            <p>Le nostre linee guida sono progettate per garantire la massima qualità e conformità in ogni progetto. Seguile attentamente per ottenere risultati eccellenti.</p>
+        </section>
+        <section id="procedure">
+            <h2>Procedure</h2>
+            <p>Le procedure aziendali di ATI Project sono state sviluppate per assicurare efficienza e coerenza in tutte le operazioni. Consulta questa sezione per dettagli specifici su ogni processo.</p>
+        </section>
+        <section id="chi-siamo">
+            <h2>Chi Siamo</h2>
+            <p>ATI Project è formata da un team di professionisti dedicati e appassionati, uniti dalla missione di creare una realtà migliore attraverso l'innovazione e la qualità.</p>
+        </section>
+        <section id="contatti">
+            <h2>Contatti</h2>
+            <p>Per qualsiasi informazione, non esitare a contattarci. Siamo qui per aiutarti.</p>
+            <p>Email: info@atiproject.com</p>
+            <p>Telefono: +39 012 345 6789</p>
+        </section>
+    </div>
+    <footer>
+        <img src="/mnt/data/ATI - Bianco_Esteso.png" alt="Logo ATI Esteso">
+        <p>&copy; 2024 ATI Project - Tutti i diritti riservati</p>
+    </footer>
 </body>
 </html>
