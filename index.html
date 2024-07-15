@@ -40,9 +40,43 @@
             <p>Email: hr@atiproject.com</p>
         </section>
     </div>
+    
+    <!-- Inizio della sezione del chatbot -->
+    <div id="chatbot">
+        <ul id="chatbot-messages"></ul>
+        <input type="text" id="chatbot-input" placeholder="Fai una domanda..." />
+        <button onclick="sendMessage()">Invia</button>
+    </div>
+    <!-- Fine della sezione del chatbot -->
+
     <footer>
         <img src="images/ATI - Bianco_Esteso.png" alt="Logo ATI Esteso" class="logo-large">
         <p>&copy; 2024 ATI Project - Tutti i diritti riservati</p>
     </footer>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('chatbot-input');
+            const message = input.value;
+            input.value = '';
+
+            const messageList = document.getElementById('chatbot-messages');
+            const userMessage = document.createElement('li');
+            userMessage.textContent = 'Tu: ' + message;
+            messageList.appendChild(userMessage);
+
+            const response = await fetch('/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ question: message }),
+            });
+            const data = await response.json();
+            const botMessage = document.createElement('li');
+            botMessage.textContent = 'Bot: ' + data.response;
+            messageList.appendChild(botMessage);
+        }
+    </script>
 </body>
 </html>
