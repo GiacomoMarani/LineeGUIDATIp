@@ -1,44 +1,61 @@
+@font-face {
+    font-family: 'Modelica BW';
+    src: url('fonts/BwModelica-Bold.woff2') format('woff2'),
+         url('fonts/BwModelica-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'BwModelica-Bold', monospace;
     color: white;
     background-color: black;
     margin: 0;
     padding: 0;
 }
+
 .container {
     width: 80%;
     margin: 0 auto;
 }
+
 header {
     text-align: center;
     padding: 20px 0;
 }
+
 header img {
     max-width: 100%;
     height: auto;
 }
+
 nav {
     text-align: center;
     margin: 20px 0;
 }
+
 nav a {
     color: white;
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
 }
+
 section {
     margin: 40px 0;
 }
+
 footer {
     text-align: center;
     padding: 20px 0;
     background-color: #333;
 }
+
 .logo-small {
     width: 150px;
     height: auto;
 }
+
 .logo-large {
     width: 300px;
     height: auto;
