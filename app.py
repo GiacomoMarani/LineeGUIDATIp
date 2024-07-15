@@ -2,6 +2,7 @@ import fitz  # PyMuPDF
 import json
 from flask import Flask, request, jsonify
 import os
+from transformers import pipeline
 
 app = Flask(__name__)
 
@@ -47,20 +48,22 @@ def load_data():
 
 linee_guida_data, procedure_data, validazione_data = load_data()
 
+# Modello di risposta utilizzando Hugging Face Transformers
+qa_pipeline = pipeline("question-answering", model="distilbert-base-cased-distilled-squad")
+
 # Funzione per trovare la risposta
-def find_answer(data, question):
-    if question.lower() in data.lower():
-        return "Ecco cosa ho trovato: " + data
-    return "Non ho trovato una risposta alla tua domanda."
+def find_answer(question, context):
+    result = qa_pipeline(question=question, context=context)
+    return result['answer']
 
 @app.route('/chatbot', methods=['POST'])
 def chatbot():
     question = request.json.get('question')
-    response = find_answer(linee_guida_data, question)
-    if response == "Non ho trovato una risposta alla tua domanda.":
-        response = find_answer(procedure_data, question)
-    if response == "Non ho trovato una risposta alla tua domanda.":
-        response = find_answer(validazione_data, question)
+    response = find_answer(question, linee_guida_data)
+    if not response:
+        response = find_answer(question, procedure_data)
+    if not response:
+        response = find_answer(question, validazione_data)
     return jsonify({'response': response})
 
 if __name__ == '__main__':

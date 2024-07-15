@@ -43,7 +43,8 @@
     
     <!-- Inizio della sezione del chatbot -->
     <div id="chatbot-container">
-        <div id="chatbot">
+        <div id="chatbot-header" onclick="toggleChatbot()">Chat with us!</div>
+        <div id="chatbot" style="display: none;">
             <div id="chatbot-messages"></div>
             <div id="chatbot-input-container">
                 <input type="text" id="chatbot-input" placeholder="Fai una domanda..." />
@@ -59,6 +60,11 @@
     </footer>
 
     <script>
+        function toggleChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
+        }
+
         async function sendMessage() {
             const input = document.getElementById('chatbot-input');
             const message = input.value;
