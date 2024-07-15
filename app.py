@@ -48,22 +48,22 @@ def load_data():
 
 linee_guida_data, procedure_data, validazione_data = load_data()
 
-# Modello di risposta utilizzando Hugging Face Transformers
-qa_pipeline = pipeline("question-answering", model="distilbert-base-cased-distilled-squad")
+# Configura il modello di Hugging Face
+qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 
 # Funzione per trovare la risposta
-def find_answer(question, context):
-    result = qa_pipeline(question=question, context=context)
+def find_answer(data, question):
+    result = qa_pipeline(question=question, context=data)
     return result['answer']
 
 @app.route('/chatbot', methods=['POST'])
 def chatbot():
     question = request.json.get('question')
-    response = find_answer(question, linee_guida_data)
-    if not response:
-        response = find_answer(question, procedure_data)
-    if not response:
-        response = find_answer(question, validazione_data)
+    response = find_answer(linee_guida_data, question)
+    if not response or response.lower() == "non ho trovato una risposta alla tua domanda.":
+        response = find_answer(procedure_data, question)
+    if not response or response.lower() == "non ho trovato una risposta alla tua domanda.":
+        response = find_answer(validazione_data, question)
     return jsonify({'response': response})
 
 if __name__ == '__main__':

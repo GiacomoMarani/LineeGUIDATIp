@@ -3,93 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATI Project - Linee GUIDA</title>
     <link rel="stylesheet" href="styles.css">
+    <title>ATI Project Chatbot</title>
 </head>
 <body>
-    <header>
-        <img src="images/ATI - Bianco.png" alt="Logo ATI" class="logo-small">
-    </header>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#linee-guida">Linee Guida</a>
-        <a href="#procedure">Procedure</a>
-        <a href="#chi-siamo">Chi Siamo</a>
-        <a href="#contatti">Contatti</a>
-    </nav>
-    <div class="container">
-        <section id="home">
-            <h1>Benvenuti in ATI Project</h1>
-            <p>ATI Project è un'azienda leader nel settore, impegnata nella creazione di una realtà migliore attraverso linee guida e procedure innovative.</p>
-        </section>
-        <section id="linee-guida">
-            <h2>Linee Guida</h2>
-            <p>Le nostre linee guida sono progettate per garantire la massima qualità e conformità in ogni progetto. Seguile attentamente per ottenere risultati eccellenti.</p>
-        </section>
-        <section id="procedure">
-            <h2>Procedure</h2>
-            <p>Le procedure aziendali di ATI Project sono state sviluppate per assicurare efficienza e coerenza in tutte le operazioni. Consulta questa sezione per dettagli specifici su ogni processo.</p>
-        </section>
-        <section id="chi-siamo">
-            <h2>Chi Siamo</h2>
-            <p>ATI Project è formata da un team di professionisti dedicati e appassionati, uniti dalla missione di creare una realtà migliore attraverso l'innovazione e la qualità.</p>
-        </section>
-        <section id="contatti">
-            <h2>Contatti</h2>
-            <p>Per qualsiasi informazione, non esitare a contattarci. Siamo qui per aiutarti.</p>
-            <p>Email: hr@atiproject.com</p>
-        </section>
-    </div>
-    
-    <!-- Inizio della sezione del chatbot -->
+    <!-- Altri contenuti della pagina -->
+
+    <!-- Chatbot -->
     <div id="chatbot-container">
-        <div id="chatbot-header" onclick="toggleChatbot()">Chat with us!</div>
-        <div id="chatbot" style="display: none;">
+        <div id="chatbot-header">Chatbot</div>
+        <div id="chatbot">
             <div id="chatbot-messages"></div>
             <div id="chatbot-input-container">
-                <input type="text" id="chatbot-input" placeholder="Fai una domanda..." />
-                <button onclick="sendMessage()">Invia</button>
+                <input id="chatbot-input" type="text" placeholder="Scrivi un messaggio...">
+                <button id="chatbot-send">Invia</button>
             </div>
         </div>
     </div>
-    <!-- Fine della sezione del chatbot -->
-
-    <footer>
-        <img src="images/ATI - Bianco_Esteso.png" alt="Logo ATI Esteso" class="logo-large">
-        <p>&copy; 2024 ATI Project - Tutti i diritti riservati</p>
-    </footer>
 
     <script>
-        function toggleChatbot() {
-            const chatbot = document.getElementById('chatbot');
-            chatbot.style.display = chatbot.style.display === 'none' ? 'block' : 'none';
-        }
+        const chatbotHeader = document.getElementById('chatbot-header');
+        const chatbot = document.getElementById('chatbot');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotSend = document.getElementById('chatbot-send');
 
-        async function sendMessage() {
-            const input = document.getElementById('chatbot-input');
-            const message = input.value;
-            input.value = '';
+        chatbotHeader.addEventListener('click', () => {
+            chatbot.style.display = chatbot.style.display === 'none' ? 'flex' : 'none';
+        });
 
-            const messageList = document.getElementById('chatbot-messages');
-            const userMessage = document.createElement('div');
-            userMessage.classList.add('message', 'user-message');
-            userMessage.textContent = message;
-            messageList.appendChild(userMessage);
+        chatbotSend.addEventListener('click', async () => {
+            const message = chatbotInput.value;
+            if (message.trim() === '') return;
+
+            appendMessage('user', message);
+            chatbotInput.value = '';
 
             const response = await fetch('/chatbot', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ question: message }),
+                body: JSON.stringify({ question: message })
             });
             const data = await response.json();
-            const botMessage = document.createElement('div');
-            botMessage.classList.add('message', 'bot-message');
-            botMessage.textContent = data.response;
-            messageList.appendChild(botMessage);
+            appendMessage('bot', data.response);
+        });
 
-            messageList.scrollTop = messageList.scrollHeight;
+        function appendMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', `${sender}-message`);
+            messageElement.textContent = message;
+            chatbotMessages.appendChild(messageElement);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }
     </script>
 </body>
