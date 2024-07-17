@@ -1,94 +1,37 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Linee Guida ATI</title>
     <link rel="stylesheet" href="styles.css">
-    <title>ATI Project Chatbot</title>
 </head>
 <body>
     <header>
         <img src="images/ATI - Bianco.png" alt="Logo ATI" class="logo-small">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="amministrazione.html">Amministrazione</a>
+            <a href="front_office_back_office.html">Front Office & Back Office</a>
+            <a href="installations_programs.html">Installations & Programs - IT</a>
+            <a href="hr.html">HR Gestione e Supporto</a>
+        </nav>
     </header>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#linee-guida">Linee Guida</a>
-        <a href="#procedure">Procedure</a>
-        <a href="#chi-siamo">Chi Siamo</a>
-        <a href="#contatti">Contatti</a>
-    </nav>
     <div class="container">
-        <section id="home">
-            <h1>Benvenuti in ATI Project</h1>
-            <p>ATI Project è un'azienda leader nel settore, impegnata nella creazione di una realtà migliore attraverso linee guida e procedure innovative.</p>
-        </section>
-        <section id="linee-guida">
-            <h2>Linee Guida</h2>
-            <p>Le nostre linee guida sono progettate per garantire la massima qualità e conformità in ogni progetto. Seguile attentamente per ottenere risultati eccellenti.</p>
-        </section>
-        <section id="procedure">
-            <h2>Procedure</h2>
-            <p>Le procedure aziendali di ATI Project sono state sviluppate per assicurare efficienza e coerenza in tutte le operazioni. Consulta questa sezione per dettagli specifici su ogni processo.</p>
-        </section>
-        <section id="chi-siamo">
-            <h2>Chi Siamo</h2>
-            <p>ATI Project è formata da un team di professionisti dedicati e appassionati, uniti dalla missione di creare una realtà migliore attraverso l'innovazione e la qualità.</p>
-        </section>
-        <section id="contatti">
-            <h2>Contatti</h2>
-            <p>Per qualsiasi informazione, non esitare a contattarci. Siamo qui per aiutarti.</p>
-            <p>Email: hr@atiproject.com</p>
-        </section>
+        <h1>Benvenuto nel portale Linee Guida ATI</h1>
+        <p>Con questa presentazione lo Studio vuole fornirti informazioni utili per meglio comprendere lo spirito, la missione condivisa dai titolari e dai loro collaboratori.
+        ATI Project non è un’entità astratta, è il risultato del lavoro delle persone, delle conoscenze, dei valori e delle idee di noi tutti.
+        Questo comporta la necessità di lavorare in team nel rispetto delle diverse professionalità e delle scelte che regolano le relazioni interne allo studio.
+        Siamo convinti che ognuno di noi può fare la differenza, contribuendo con i propri comportamenti e le proprie idee a migliorare la qualità dei servizi ed il clima interno.</p>
     </div>
-
-    <!-- Chatbot -->
-    <div id="chatbot-container">
+    <div id="chatbot">
         <div id="chatbot-header">Chatbot</div>
-        <div id="chatbot">
-            <div id="chatbot-messages"></div>
-            <div id="chatbot-input-container">
-                <input id="chatbot-input" type="text" placeholder="Scrivi un messaggio...">
-                <button id="chatbot-send">Invia</button>
-            </div>
+        <div id="chatbot-messages"></div>
+        <div id="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Scrivi un messaggio...">
+            <button id="chatbot-send">Invia</button>
         </div>
     </div>
-
-    <script>
-        const chatbotHeader = document.getElementById('chatbot-header');
-        const chatbot = document.getElementById('chatbot');
-        const chatbotMessages = document.getElementById('chatbot-messages');
-        const chatbotInput = document.getElementById('chatbot-input');
-        const chatbotSend = document.getElementById('chatbot-send');
-
-        chatbotHeader.addEventListener('click', () => {
-            chatbot.style.display = chatbot.style.display === 'none' ? 'flex' : 'none';
-        });
-
-        chatbotSend.addEventListener('click', async () => {
-            const message = chatbotInput.value;
-            if (message.trim() === '') return;
-
-            appendMessage('user', message);
-            chatbotInput.value = '';
-
-            const response = await fetch('/chatbot', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ question: message })
-            });
-            const data = await response.json();
-            appendMessage('bot', data.response);
-        });
-
-        function appendMessage(sender, message) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', `${sender}-message`);
-            messageElement.textContent = message;
-            chatbotMessages.appendChild(messageElement);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-    </script>
+    <script src="chatbot.js"></script>
 </body>
 </html>
