@@ -1,145 +1,92 @@
 @font-face {
-    font-family: 'Modelica BW';
+    font-family: 'Bw Modelica';
     src: url('fonts/BwModelica-Bold.woff2') format('woff2'),
          url('fonts/BwModelica-Bold.woff') format('woff');
-    font-weight: normal;
+    font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 
 body {
-    font-family: 'Modelica BW', monospace;
-    color: white;
-    background-color: black;
+    font-family: 'Bw Modelica', Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    width: 80%;
-    margin: 0 auto;
+    background-color: #f4f4f4;
 }
 
 header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
     text-align: center;
-    padding: 20px 0;
-}
-
-header img {
-    max-width: 100%;
-    height: auto;
 }
 
 nav {
-    text-align: center;
-    margin: 20px 0;
+    background-color: #444;
+    color: #fff;
+    padding: 0.5em 0;
 }
 
-nav a {
-    color: white;
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: #fff;
     text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
 }
 
-section {
-    margin: 40px 0;
+main {
+    padding: 1em;
 }
 
-footer {
-    text-align: center;
-    padding: 20px 0;
-    background-color: #333;
+#chat-container {
+    border: 1px solid #ccc;
+    padding: 1em;
+    background-color: #fff;
+    margin-top: 2em;
 }
 
-.logo-small {
-    width: 150px;
-    height: auto;
-}
-
-.logo-large {
-    width: 300px;
-    height: auto;
-}
-
-#chatbot-container {
-    position: fixed;
-    bottom: 0;
-    right: 20px;
-    width: 350px;
-    font-family: 'Modelica BW', monospace;
-    z-index: 1000;
-}
-
-#chatbot-header {
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    cursor: pointer;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-#chatbot {
-    background-color: #f8f9fa;
-    border: 1px solid #007bff;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    display: none;
-    flex-direction: column;
-    height: 400px;
-    max-height: 400px;
-}
-
-#chatbot-messages {
-    flex: 1;
-    padding: 10px;
+#chat-box {
+    max-height: 300px;
     overflow-y: auto;
+    margin-bottom: 1em;
 }
 
-#chatbot-input-container {
-    display: flex;
-    border-top: 1px solid #007bff;
-}
-
-#chatbot-input {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-bottom-left-radius: 10px;
-}
-
-#chatbot-input:focus {
-    outline: none;
-}
-
-#chatbot-input-container button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-bottom-right-radius: 10px;
-}
-
-#chatbot-input-container button:hover {
-    background-color: #0056b3;
-}
-
-.message {
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 10px;
+.chat-message {
+    margin: 0.5em 0;
+    padding: 0.5em;
+    border-radius: 5px;
 }
 
 .user-message {
-    background-color: #007bff;
-    color: white;
-    align-self: flex-end;
+    background-color: #e0e0e0;
+    text-align: right;
 }
 
 .bot-message {
-    background-color: #e9ecef;
-    color: black;
-    align-self: flex-start;
+    background-color: #d1e7dd;
+    text-align: left;
+}
+
+#chat-form {
+    display: flex;
+    gap: 0.5em;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 0.5em;
+}
+
+button {
+    padding: 0.5em;
 }

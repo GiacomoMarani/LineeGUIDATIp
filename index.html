@@ -3,35 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Linee Guida ATI</title>
+    <title>Linee Guida - Home</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <img src="images/ATI - Bianco.png" alt="Logo ATI" class="logo-small">
+        <h1>Linee Guida ATI Project</h1>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="amministrazione.html">Amministrazione</a>
-            <a href="front_office_back_office.html">Front Office & Back Office</a>
-            <a href="installations_programs.html">Installations & Programs - IT</a>
-            <a href="hr.html">HR Gestione e Supporto</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="amministrazione.html">Amministrazione</a></li>
+                <li><a href="front_back_office.html">Front & Back Office</a></li>
+                <li><a href="installations_programs.html">Installations & Programs - IT</a></li>
+                <li><a href="hr_support.html">HR Gestione e Supporto</a></li>
+            </ul>
         </nav>
     </header>
-    <div class="container">
-        <h1>Benvenuto nel portale Linee Guida ATI</h1>
-        <p>Con questa presentazione lo Studio vuole fornirti informazioni utili per meglio comprendere lo spirito, la missione condivisa dai titolari e dai loro collaboratori.
-        ATI Project non è un’entità astratta, è il risultato del lavoro delle persone, delle conoscenze, dei valori e delle idee di noi tutti.
-        Questo comporta la necessità di lavorare in team nel rispetto delle diverse professionalità e delle scelte che regolano le relazioni interne allo studio.
-        Siamo convinti che ognuno di noi può fare la differenza, contribuendo con i propri comportamenti e le proprie idee a migliorare la qualità dei servizi ed il clima interno.</p>
-    </div>
-    <div id="chatbot">
-        <div id="chatbot-header">Chatbot</div>
-        <div id="chatbot-messages"></div>
-        <div id="chatbot-input-container">
+    <main>
+        <section>
+            <h2>Benvenuto nel portale delle linee guida ATI Project</h2>
+            <p>Con questa WEB page lo Studio vuole fornirti informazioni utili per meglio comprendere lo spirito, la missione condivisa dai titolari e dai loro collaboratori...
+            </p>
+        </section>
+        <div id="chatbot">
+            <div id="chatbot-header">Chatbot</div>
+            <div id="chatbot-messages"></div>
             <input type="text" id="chatbot-input" placeholder="Scrivi un messaggio...">
             <button id="chatbot-send">Invia</button>
         </div>
-    </div>
-    <script src="chatbot.js"></script>
+        <button id="chatbot-button">Chat</button>
+    </main>
+    <footer>
+        <p>&copy; 2024 ATI Project</p>
+        <!-- Inserisci loghi del footer -->
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
