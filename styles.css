@@ -11,8 +11,8 @@ body {
     font-family: 'Bw Modelica', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #000; /* Cambiato a nero */
-    color: #fff; /* Cambiato a bianco per il testo */
+    background-color: #000; /* Sfondo nero */
+    color: #fff; /* Testo bianco */
 }
 
 header {
@@ -24,12 +24,12 @@ header {
 }
 
 .header-logo {
-    width: 100px; /* Modifica questa dimensione come necessario */
+    width: 50px; /* Ridurre la dimensione del logo */
     height: auto;
     display: block;
     margin: 0 auto;
     position: absolute;
-    left: 20px; /* Puoi aggiustare questo valore */
+    left: 20px;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -67,10 +67,11 @@ nav ul li a:hover {
 
 main {
     padding: 1em;
+    background-color: #000; /* Assicurarsi che lo sfondo sia nero */
 }
 
 .footer-logo {
-    width: 150px; /* Modifica questa dimensione come necessario */
+    width: 100px; /* Ridurre la dimensione del logo */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -94,8 +95,8 @@ footer p {
 #chat-container {
     border: 1px solid #ccc;
     padding: 1em;
-    background-color: #222; /* Cambiato a scuro */
-    color: #fff; /* Cambiato a bianco per il testo */
+    background-color: #222;
+    color: #fff;
     margin-top: 2em;
 }
 
